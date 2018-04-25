@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GesComModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_maquinario">
+          <Key>
+            <PropertyRef Name="maq_id" />
+          </Key>
+          <Property Name="maq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maq_procNome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maq_memoriaRam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maq_memoriaHD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maq_sisOperacional" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="maq_placaVideo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GesComModelStoreContainer">
+          <EntitySet Name="tb_maquinario" EntityType="Self.tb_maquinario" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GesComModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_maquinario">
+          <Key>
+            <PropertyRef Name="maq_id" />
+          </Key>
+          <Property Name="maq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maq_procNome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maq_memoriaRam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maq_memoriaHD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maq_sisOperacional" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maq_placaVideo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GesComEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_maquinario" EntityType="Self.tb_maquinario" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GesComModelStoreContainer" CdmEntityContainer="GesComEntities1">
+          <EntitySetMapping Name="tb_maquinario">
+            <EntityTypeMapping TypeName="GesComModel.tb_maquinario">
+              <MappingFragment StoreEntitySet="tb_maquinario">
+                <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+                <ScalarProperty Name="maq_procNome" ColumnName="maq_procNome" />
+                <ScalarProperty Name="maq_memoriaRam" ColumnName="maq_memoriaRam" />
+                <ScalarProperty Name="maq_memoriaHD" ColumnName="maq_memoriaHD" />
+                <ScalarProperty Name="maq_sisOperacional" ColumnName="maq_sisOperacional" />
+                <ScalarProperty Name="maq_placaVideo" ColumnName="maq_placaVideo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
