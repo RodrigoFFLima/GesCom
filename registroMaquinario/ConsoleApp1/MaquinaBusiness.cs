@@ -8,19 +8,16 @@ namespace ConsoleApp1
 {
     public class MaquinaBusiness
     {
-        public int InserirMaquina(tb_maquinario item)
+        public void InserirMaquina(tb_maquinario item)
         {
             try
             {
-                int id = 0;
                 using (GesComEntities1 db = new GesComEntities1())
                 {
                     db.tb_maquinario.Add(item);
                     db.SaveChanges();
-                    id = item.maq_id;
                 }
 
-                return id;
             }
             catch (Exception ex)
             {

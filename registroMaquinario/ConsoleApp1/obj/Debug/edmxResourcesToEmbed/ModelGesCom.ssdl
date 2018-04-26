@@ -2,14 +2,14 @@
 <Schema Namespace="GesComModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="tb_maquinario">
     <Key>
-      <PropertyRef Name="maq_id" />
+      <PropertyRef Name="maq_nome" />
     </Key>
-    <Property Name="maq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="maq_procNome" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="maq_memoriaRam" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="maq_memoriaHD" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="maq_sisOperacional" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="maq_placaVideo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="maq_nome" Nullable="false" MaxLength="50" Type="varchar" />
+    <Property Name="maq_procNome" Nullable="false" MaxLength="100" Type="varchar" />
+    <Property Name="maq_memoriaRam" Nullable="false" MaxLength="50" Type="varchar" />
+    <Property Name="maq_memoriaHD" Nullable="false" MaxLength="20" Type="varchar" />
+    <Property Name="maq_sisOperacional" Nullable="false" MaxLength="100" Type="varchar" />
+    <Property Name="maq_placaVideo" Nullable="false" MaxLength="100" Type="varchar" />
   </EntityType>
   <EntityContainer Name="GesComModelStoreContainer">
     <EntitySet Name="tb_maquinario" EntityType="Self.tb_maquinario" Schema="dbo" store:Type="Tables" />

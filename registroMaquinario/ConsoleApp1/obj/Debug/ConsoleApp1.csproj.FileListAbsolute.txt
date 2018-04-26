@@ -32,3 +32,12 @@ C:\Users\rodri\GitHub\GesCom\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp
 C:\Users\rodri\GitHub\GesCom\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
 C:\Users\rodri\GitHub\GesCom\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\rodri\GitHub\GesCom\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\bin\Debug\EntityFramework.dll
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\bin\Debug\EntityFramework.xml
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.csprojResolveAssemblyReference.cache
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\rodrigo_ferrarezi\Desktop\GesCom-master\registroMaquinario\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
