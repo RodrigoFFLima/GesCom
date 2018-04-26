@@ -13,7 +13,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Users\rodri\Desktop\Example.txt";
+            string path = @"C:\Example.txt";
             if (!File.Exists(path))
             {
                 File.Create(path).Dispose();
