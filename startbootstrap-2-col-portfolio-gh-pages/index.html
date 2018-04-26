@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>GLPI - Standard interface</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/jquery-glpi.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://demo.glpi-project.org/css/styles.css?v=9.2.2" media="screen">
+        <link rel="stylesheet" type="text/css" href="css/palettes/vintage.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://demo.glpi-project.org/lib/jquery/css/smoothness/jquery-ui-1.10.4.custom.min.css?v=9.2.2" media="screen">
+        <link rel="stylesheet" type="text/css" href="http://demo.glpi-project.org/lib/font-awesome-4.7.0/css/font-awesome.min.css?v=9.2.2" media="screen">
+        
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" type="text/css" href="/css/styles_ie.css" media="screen">
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+        <link rel="shortcut icon" type="images/x-icon" href="pics/favicon.ico">
+     </head>
+
+     <body class="layout_lefttab" cz-shortcut-listen="true" style="">
+        <div id="header">
+           <div id="header_top">
+              <div id="c_logo"><a href="/front/central.php" accesskey="1" title="Home"></a></div>
+              <div id="c_preference">
+                 <ul>
+                    <li id="deconnexion"><a href="/front/logout.php" title="Logout" class="fa fa-sign-out"><span class="sr-only">Logout&gt;</span></a></li>
+                    <li id="preferences_link"><a href="/front/preference.php" title="My settings" class="fa fa-cog"><span class="sr-only">My settings</span><span id="myname">Kidd Quero</span></a></li>
+                    <li id="bookmark_link">
+                       <script type="text/javascript">
+                          $(function() {$('<div id=\'showSavedSearches\' class=\'slidepanel onright\'><div class="header"><button type=\'button\' class=\'close ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close\' title=\'Close\'><span class=\'ui-button-icon-primary ui-icon ui-icon-closethick\'></span><span class=\'ui-button-text\'>Close</span></button><a href=\'/front/savedsearch.php\'><img class=\'icon\' src=\'/pics/menu_config.png\' alt=\'Manage saved searches\' title=\'Manage saved searches\'/></a><h3>Saved searches</h3></div><div class=\'contents\'></div></div>')
+                                   .hide()
+                                   .appendTo('body');
+                          $('#showSavedSearches .close').on('click', function() {
+                                   $('#showSavedSearches').hide(
+                                      'slow',
+                                      function () {
+                                         $(this).find('.contents').empty();
+                                      }
+                                   );
+                                 });
+                          $('#showSavedSearchesLink').on('click', function() {
+                                   $('#showSavedSearches').show(
+                                      'slow',
+                                      function() {
+                                         _loadshowSavedSearches();
+                                      }
+                                   );
+                                });
+                          });var _loadshowSavedSearches = function() {
+                                      $.ajax({
+                                         url: '/ajax/savedsearch.php?action=show',
+                                         beforeSend: function() {
+                                            var _loader = $('<div id=\'loadingslide\'><div class=\'loadingindicator\'>Loading...</div></div>');
+                                            $('#showSavedSearches .contents').html(_loader);
+                                         },
+                                         complete: function() {
+                                            $('#loadingslide').remove();
+                                         },
+                                         success: function(res) {
+                                            $('#showSavedSearches .contents').html(res);
+                                         }
+                                      });
+                                   };
+                       </script><a href="#" id="showSavedSearchesLink" class="fa fa-star" title="Load a bookmark"><span class="sr-only">Saved searches</span></a>
+                    </li>
+                    <li id="help_link"><a href="http://glpi-project.org/help-central" target="_blank" title="Help" class="fa fa-question"><span class="sr-only">Help</span></a></li>
+                    <li id="language_link"><span>English</span></li>
+                    <li id="c_recherche">
+                       <form method="get" action="/front/search.php">
+                          <span id="champRecherche"><input size="15" type="text" name="globalsearch" placeholder="Search"></span>
+                          <input type="hidden" name="_glpi_csrf_token" value="efd378160482fd0e17529d640a02ff8d">
+                       </form>
+                    </li>
+                 </ul>
+              </div>
+           </div>
+           <div id="c_menu">
+              <ul id="menu" class="fullmenu">
+                 <li id="menu1" data-id="1" class="">
+                    <a href="/front/computer.php" class="itemP" title="Assets">Assets</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/computer.php" accesskey="o">C<u>o</u>mputers</a></li>
+                       <li class=""><a href="/front/monitor.php">Monitors</a></li>
+                       <li class=""><a href="/front/software.php" accesskey="s"><u>S</u>oftware</a></li>
+                       <li class=""><a href="/front/networkequipment.php">Network devices</a></li>
+                       <li class=""><a href="/front/peripheral.php">Devices</a></li>
+                       <li class=""><a href="/front/printer.php">Printers</a></li>
+                       <li class=""><a href="/front/cartridgeitem.php">Cartridges</a></li>
+                       <li class=""><a href="/front/consumableitem.php">Consumables</a></li>
+                       <li class=""><a href="/front/phone.php">Phones</a></li>
+                       <li class=""><a href="/front/allassets.php">Global</a></li>
+                    </ul>
+                 </li>
+                 <li id="menu2" data-id="2" class="">
+                    <a href="/front/ticket.php" class="itemP" title="Assistance">Assistance</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/ticket.php" accesskey="t"><u>T</u>ickets</a></li>
+                       <li class=""><a href="/front/ticket.form.php">Create ticket</a></li>
+                       <li class=""><a href="/front/problem.php">Problems</a></li>
+                       <li class=""><a href="/front/change.php">Changes</a></li>
+                       <li class=""><a href="/front/planning.php">Planning</a></li>
+                       <li class=""><a href="/front/stat.php" accesskey="a">St<u>a</u>tistics</a></li>
+                       <li class=""><a href="/front/ticketrecurrent.php" accesskey="n">Recurre<u>n</u>t tickets</a></li>
+                    </ul>
+                 </li>
+                 <li id="menu3" data-id="3" class="">
+                    <a href="/front/softwarelicense.php" class="itemP" title="Management">Management</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/softwarelicense.php">Lice<u>n</u>ses</a></li>
+                       <li class=""><a href="/front/budget.php">Budgets</a></li>
+                       <li class=""><a href="/front/supplier.php">Suppliers</a></li>
+                       <li class=""><a href="/front/contact.php">Contacts</a></li>
+                       <li class=""><a href="/front/contract.php">Contracts</a></li>
+                       <li class=""><a href="/front/document.php" accesskey="d"><u>D</u>ocuments</a></li>
+                       <li class=""><a href="/front/line.php">Li<u>n</u>es</a></li>
+                       <li class=""><a href="/front/certificate.php">Certificates</a></li>
+                    </ul>
+                 </li>
+                 <li id="menu4" data-id="4" class="">
+                    <a href="/front/project.php" class="itemP" title="Tools">Tools</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/project.php">Projects</a></li>
+                       <li class=""><a href="/front/reminder.php">Reminders</a></li>
+                       <li class=""><a href="/front/rssfeed.php">RSS feeds</a></li>
+                       <li class=""><a href="/front/knowbaseitem.php" accesskey="b">Knowledge <u>b</u>ase</a></li>
+                       <li class=""><a href="/front/reservationitem.php">Reservations</a></li>
+                       <li class=""><a href="/front/report.php" accesskey="e">R<u>e</u>ports</a></li>
+                       <li class=""><a href="/front/savedsearch.php">Saved searches</a></li>
+                    </ul>
+                 </li>
+                 <li id="menu5" data-id="5" class="">
+                    <a href="/front/user.php" class="itemP" title="Administration">Administration</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/user.php" accesskey="u"><u>U</u>sers</a></li>
+                       <li class=""><a href="/front/group.php" accesskey="g"><u>G</u>roups</a></li>
+                       <li class=""><a href="/front/profile.php">Profiles</a></li>
+                    </ul>
+                 </li>
+                 <li id="menu6" data-id="6" class="">
+                    <a href="/front/dropdown.php" class="itemP" title="Setup">Setup</a>
+                    <ul class="ssmenu" style="display: none;">
+                       <li class=""><a href="/front/dropdown.php">Dropdow<u>n</u>s</a></li>
+                       <li class=""><a href="/front/devices.php">Components</a></li>
+                       <li class=""><a href="/front/slm.php">Service levels</a></li>
+                       <li class=""><a href="/front/link.php">External links</a></li>
+                    </ul>
+                 </li>
+              </ul>
+              <script type="text/javascript">
+                 //<![CDATA[
+                 
+                 $( document ).ready(function() {
+                 $('#show_all_menu').dialog({
+                          height: 'auto',
+                          width: 'auto',
+                          modal: true,
+                          autoOpen: false
+                          });
+                 });
+                 
+                 //]]>
+              </script><a href="#" onclick="$('#show_all_menu').dialog('open'); return false;" id="menu_all_button" class="button-icon"></a>
+           </div>
+           <div id="c_ssmenu2">
+              <ul>
+                 <li class="breadcrumb_item"><a href="/front/central.php" title="Home">Home</a></li>
+                 <li>&nbsp;</li>
+                 <li class="profile-selector">
+                    <script type="text/javascript">
+                       var entity_window=$('<div />').dialog({
+                       
+                                width:800,
+                       
+                                autoOpen: false,
+                       
+                                height:400,
+                       
+                                modal: true,
+                       
+                                title: "Select the desired entity",
+                       
+                                open: function (){
+                                   var fields = {"target":"\/front\/central.php"};
+                                   $(this).load('/ajax/entitytree.php', fields);
+                                }
+                             });
+                    </script>
+                    <a onclick="entity_window.dialog(&quot;open&quot;);" href="#modal_entity_content" title="Root entity > entity A > entity AA (tree structure)" class="entity_select" id="global_entity_select">entity AA (tree structure)</a>
+                 </li>
+              </ul>
+           </div>
+        </div>
+        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="ui-id-1" aria-labelledby="ui-id-2" style="display: none; position: absolute;">
+           <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-2" class="ui-dialog-title">Select the desired entity</span><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></div>
+           <div id="ui-id-1" class="ui-dialog-content ui-widget-content" style="display: block;"></div>
+           <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+        </div>
+        <span class="fa-stack fa-lg" id="backtotop" style="display: none"><i class="fa fa-circle fa-stack-2x primary-fg-inverse"></i><a href="#" class="fa fa-arrow-up fa-stack-1x primary-fg" title="Back to top of the page"><span class="sr-only">Top of the page</span></a></span>
+        <div id="page">
+           <div class="glpi_tabs new_form_tabs">
+              <div id="tabspanel" class="center-h"></div>
+              <div id="tabs328165352" class="center horizontal ui-tabs ui-widget ui-widget-content ui-corner-all ui-corner-left">
+                 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="ui-tabs-1" aria-labelledby="ui-id-3" aria-selected="true"><a title="Personal View" href="/ajax/common.tabs.php?_target=/front/central.php&amp;_itemtype=Central&amp;_glpi_tab=Central$1&amp;id=0" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">Personal View</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-2" aria-labelledby="ui-id-4" aria-selected="false"><a title="Group View" href="/ajax/common.tabs.php?_target=/front/central.php&amp;_itemtype=Central&amp;_glpi_tab=Central$2&amp;id=0" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">Group View</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-3" aria-labelledby="ui-id-5" aria-selected="false"><a title="Global View" href="/ajax/common.tabs.php?_target=/front/central.php&amp;_itemtype=Central&amp;_glpi_tab=Central$3&amp;id=0" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">Global View</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-4" aria-labelledby="ui-id-6" aria-selected="false"><a title="RSS feeds" href="/ajax/common.tabs.php?_target=/front/central.php&amp;_itemtype=Central&amp;_glpi_tab=Central$4&amp;id=0" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-6">RSS feeds</a></li>
+                    <li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-5" aria-labelledby="ui-id-7" aria-selected="false"><a title="All" href="/ajax/common.tabs.php?_target=/front/central.php&amp;_itemtype=Central&amp;_glpi_tab=-1&amp;id=0" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-7">All</a></li>
+                 </ul>
+                 <div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-3" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                    <table class="tab_cadre_central">
+                       <tbody>
+                          <tr class="noHover">
+                             <td class="top" width="50%">
+                                <table class="central">
+                                   <tbody>
+                                      <tr class="noHover">
+                                         <td>
+                                            <table class="tab_cadrehov">
+                                               <tbody>
+                                                  <tr class="noHover">
+                                                     <th colspan="4"><a href="/front/ticket.php?reset=reset&amp;criteria%5B0%5D%5Bfield%5D=4&amp;criteria%5B0%5D%5Bsearchtype%5D=equals&amp;criteria%5B0%5D%5Bvalue%5D=7&amp;criteria%5B0%5D%5Blink%5D=AND&amp;criteria%5B1%5D%5Bfield%5D=12&amp;criteria%5B1%5D%5Bsearchtype%5D=equals&amp;criteria%5B1%5D%5Bvalue%5D=notold&amp;criteria%5B1%5D%5Blink%5D=AND">Your tickets in progress <span class="primary-bg primary-fg count">2</span></a></th>
+                                                  </tr>
+                                                  <tr>
+                                                     <th class=""></th>
+                                                     <th class="">Requester</th>
+                                                     <th class="">Associated elements</th>
+                                                     <th class="">Description</th>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td class="center" bgcolor="#fca9a9">ID: 35673</td>
+                                                     <td class="center">
+                                                        <span class="b">Kidd Quero (7)</span> <a id="tooltiplink1994614139" href="/front/user.form.php?id=7"><span id="tooltip1994614139" class="fa fa-info pointer" data-hasqtip="0"></span></a>
+                                                        <div id="contenttooltip1994614139" class="invisible"><strong>Name</strong>: Kidd Quero (7)<br><strong>Login</strong>: admin_en<br><strong>Phone</strong>: 123<br><strong>Location</strong>: **Lycee** &gt; TEST<br></div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#tooltip1994614139').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contenttooltip1994614139')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script><br>
+                                                     </td>
+                                                     <td class="center">Monitors - <span class="b"><a href="/front/monitor.form.php?id=1121" title="LCD 17" reg="" altura"="">LCD 17" / REG ALTURA (1121)</a></span><br></td>
+                                                     <td>
+                                                        <a id="ticket356731251875725" href="/front/ticket.form.php?id=35673" data-hasqtip="1"><span class="b">N/A (35673)</span></a> (0 - 1) 
+                                                        <div id="contentticket356731251875725" class="invisible">&nbsp;</div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#ticket356731251875725').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentticket356731251875725')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td class="center" bgcolor="#fca9a9">ID: 35671</td>
+                                                     <td class="center">
+                                                        <span class="b">Kidd Quero (7)</span> <a id="tooltiplink79302563" href="/front/user.form.php?id=7"><span id="tooltip79302563" class="fa fa-info pointer" data-hasqtip="2"></span></a>
+                                                        <div id="contenttooltip79302563" class="invisible"><strong>Name</strong>: Kidd Quero (7)<br><strong>Login</strong>: admin_en<br><strong>Phone</strong>: 123<br><strong>Location</strong>: **Lycee** &gt; TEST<br></div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#tooltip79302563').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contenttooltip79302563')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script><br>
+                                                     </td>
+                                                     <td class="center">General</td>
+                                                     <td>
+                                                        <a id="ticket356711963602026" href="/front/ticket.form.php?id=35671" data-hasqtip="3"><span class="b">test (35671)</span></a> (1 - 1) 
+                                                        <div id="contentticket356711963602026" class="invisible">test</div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#ticket356711963602026').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentticket356711963602026')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                               </tbody>
+                                            </table>
+                                            <table class="tab_cadrehov">
+                                               <tbody>
+                                                  <tr class="noHover">
+                                                     <th colspan="4"><a href="/front/ticket.php?reset=reset&amp;criteria%5B0%5D%5Bfield%5D=5&amp;criteria%5B0%5D%5Bsearchtype%5D=equals&amp;criteria%5B0%5D%5Bvalue%5D=7&amp;criteria%5B0%5D%5Blink%5D=AND&amp;criteria%5B1%5D%5Bfield%5D=12&amp;criteria%5B1%5D%5Bsearchtype%5D=equals&amp;criteria%5B1%5D%5Bvalue%5D=process&amp;criteria%5B1%5D%5Blink%5D=AND">Tickets to be processed <span class="primary-bg primary-fg count">2</span></a></th>
+                                                  </tr>
+                                                  <tr>
+                                                     <th></th>
+                                                     <th>Requester</th>
+                                                     <th class="">Associated elements</th>
+                                                     <th class="">Description</th>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td class="center" bgcolor="#fca9a9">ID: 35673</td>
+                                                     <td class="center">
+                                                        <span class="b">Kidd Quero (7)</span> <a id="tooltiplink1221747422" href="/front/user.form.php?id=7"><span id="tooltip1221747422" class="fa fa-info pointer" data-hasqtip="4"></span></a>
+                                                        <div id="contenttooltip1221747422" class="invisible"><strong>Name</strong>: Kidd Quero (7)<br><strong>Login</strong>: admin_en<br><strong>Phone</strong>: 123<br><strong>Location</strong>: **Lycee** &gt; TEST<br></div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#tooltip1221747422').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contenttooltip1221747422')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script><br>
+                                                     </td>
+                                                     <td class="center">Monitors - <span class="b"><a href="/front/monitor.form.php?id=1121" title="LCD 17" reg="" altura"="">LCD 17" / REG ALTURA (1121)</a></span><br></td>
+                                                     <td>
+                                                        <a id="ticket356731022654476" href="/front/ticket.form.php?id=35673" data-hasqtip="5"><span class="b">N/A (35673)</span></a> (0 - 1) 
+                                                        <div id="contentticket356731022654476" class="invisible">&nbsp;</div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#ticket356731022654476').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentticket356731022654476')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td class="center" bgcolor="#fca9a9">ID: 35671</td>
+                                                     <td class="center">
+                                                        <span class="b">Kidd Quero (7)</span> <a id="tooltiplink564218440" href="/front/user.form.php?id=7"><span id="tooltip564218440" class="fa fa-info pointer" data-hasqtip="6"></span></a>
+                                                        <div id="contenttooltip564218440" class="invisible"><strong>Name</strong>: Kidd Quero (7)<br><strong>Login</strong>: admin_en<br><strong>Phone</strong>: 123<br><strong>Location</strong>: **Lycee** &gt; TEST<br></div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#tooltip564218440').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contenttooltip564218440')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script><br>
+                                                     </td>
+                                                     <td class="center">General</td>
+                                                     <td>
+                                                        <a id="ticket35671302365391" href="/front/ticket.form.php?id=35671" data-hasqtip="7"><span class="b">test (35671)</span></a> (1 - 1) 
+                                                        <div id="contentticket35671302365391" class="invisible">test</div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#ticket35671302365391').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentticket35671302365391')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                               </tbody>
+                                            </table>
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </td>
+                             <td class="top" width="50%">
+                                <table class="central">
+                                   <tbody>
+                                      <tr class="noHover">
+                                         <td>
+                                            <table class="tab_cadrehov">
+                                               <tbody>
+                                                  <tr class="noHover">
+                                                     <th><a href="/front/planning.php">Your planning</a></th>
+                                                  </tr>
+                                                  <tr class="noHover">
+                                                     <td class="planning_on_central">
+                                                        <div>
+                                                           <div id="planning675465625" class="fc ui-widget fc-ltr">
+                                                              <div class="fc-view-container" style="">
+                                                                 <div class="fc-view fc-listFull-view fc-list-view ui-widget-content" style="">
+                                                                    <div class="fc-scroller" style="overflow-x: hidden; overflow-y: auto; height: 515px;">
+                                                                       <table class="fc-list-table">
+                                                                          <tbody>
+                                                                             <tr class="fc-list-heading" data-date="2018-04-11">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">11 April 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_past" data-hasqtip="13">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=997"><span class="event_type" style="background-color: #30cb53"></span>zedz</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-04-12">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">12 April 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_past" data-hasqtip="14">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=997"><span class="event_type" style="background-color: #30cb53"></span>zedz</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-04-13">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">13 April 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_past" data-hasqtip="15">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=997"><span class="event_type" style="background-color: #30cb53"></span>zedz</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-04-30">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">30 April 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="12" aria-describedby="qtip-12">
+                                                                                <td class="fc-list-item-time ui-widget-content">0:00 - 2:00</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Durchführung Kick-Off</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-02">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">2 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="16">
+                                                                                <td class="fc-list-item-time ui-widget-content">8:00 - 0:00</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2Q</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-03">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">3 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="17">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2Q</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-04">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">4 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="18">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2Q</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-05">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">5 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="19">
+                                                                                <td class="fc-list-item-time ui-widget-content">0:00 - 17:00</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2Q</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-14">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">14 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="20">
+                                                                                <td class="fc-list-item-time ui-widget-content">2:00 - 0:00</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-15">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">15 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="21">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-16">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">16 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="22">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-17">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">17 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="23">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-18">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">18 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="24">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-19">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">19 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="25">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-20">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">20 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="26">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-21">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">21 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="27">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-22">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">22 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="28">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-23">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">23 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="29">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-24">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">24 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="30">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-25">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">25 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="31">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-26">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">26 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="32">
+                                                                                <td class="fc-list-item-time ui-widget-content">all-day</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-heading" data-date="2018-05-27">
+                                                                                <td class="ui-widget-header" colspan="3"><span class="fc-list-heading-main">27 May 2018</span></td>
+                                                                             </tr>
+                                                                             <tr class="fc-list-item fc-has-url event_future" data-hasqtip="33">
+                                                                                <td class="fc-list-item-time ui-widget-content">0:00 - 9:00</td>
+                                                                                <td class="fc-list-item-marker ui-widget-content"><span class="fc-event-dot" style="background-color:#FFEEC4"></span></td>
+                                                                                <td class="fc-list-item-title ui-widget-content"><a href="/front/project.form.php?id=1010"><span class="event_type" style="background-color: #30cb53"></span>Migration DWH2T</a></td>
+                                                                             </tr>
+                                                                          </tbody>
+                                                                       </table>
+                                                                    </div>
+                                                                 </div>
+                                                              </div>
+                                                           </div>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           
+                                                                 $(function() {
+                                                                    var disable_qtip = false,
+                                                                        disable_edit = false;
+                                                                    $('.planning_on_central a')
+                                                                       .mousedown(function() {
+                                                                          disable_qtip = true;
+                                                                          $('.qtip').hide();
+                                                                       })
+                                                                       .mouseup(function() {
+                                                                          disable_qtip = false;
+                                                                       });
+                                                           
+                                                                    var window_focused = true;
+                                                                    var loaded = false;
+                                                                    var lastView;
+                                                                    var lastDate;
+                                                                    var lastDateDirty = false;
+                                                                    window.onblur = function() { window_focused = false; }
+                                                                    window.onfocus = function() { window_focused = true; }
+                                                           
+                                                                    // datepicker for planning
+                                                                    var initFCDatePicker = function() {
+                                                                       $('#planning_datepicker').datepicker({
+                                                                          changeMonth:     true,
+                                                                          changeYear:      true,
+                                                                          numberOfMonths:  3,
+                                                                          showOn:          'button',
+                                                                          buttonText:      '<i class=\'fa fa-calendar\'></i>',
+                                                                          dateFormat:      'DD, d MM, yy',
+                                                                          onSelect: function(dateText, inst) {
+                                                                             var selected_date = $(this).datepicker('getDate');
+                                                                             $('#planning').fullCalendar('gotoDate', selected_date);
+                                                                          }
+                                                                       }).next('.ui-datepicker-trigger').addClass('pointer');
+                                                                    }
+                                                           
+                                                                    $('#planning675465625').fullCalendar({
+                                                                       height:      'auto',
+                                                                       theme:       true,
+                                                                       weekNumbers: false,
+                                                                       defaultView: 'listFull',
+                                                                       timeFormat:  'H:mm',
+                                                                       defaultDate: moment().subtract(5, 'years'),
+                                                                       eventLimit:  true, // show 'more' button when too mmany events
+                                                                       minTime:     '08:00',
+                                                                       maxTime:     '20:00',
+                                                                       listDayAltFormat: false,
+                                                                       header: false,
+                                                                       views: {
+                                                                          month: {
+                                                                             titleFormat: 'DD MMM YYYY'
+                                                                          },
+                                                                          agendaWeek: {
+                                                                             titleFormat: 'DD MMM YYYY'
+                                                                          },
+                                                                          agendaDay: {
+                                                                             titleFormat: 'DD MMM YYYY'
+                                                                          },
+                                                                          listFull: {
+                                                                             type: 'list',
+                                                                             duration: { years: 10 },
+                                                                             titleFormat: '[]',
+                                                                          }
+                                                                       },
+                                                                       viewRender: function(view){ // on date changes, replicate to datepicker
+                                                                          var currentdate = view.intervalStart;
+                                                                          $('#planning_datepicker').datepicker('setDate', new Date(currentdate));
+                                                                       },
+                                                                       eventRender: function(event, element, view) {
+                                                                          var eventtype_marker = '<span class="event_type" style="background-color: '+event.typeColor+'"></span>';
+                                                                          element.find('.fc-content').after(eventtype_marker);
+                                                                          element.find('.fc-list-item-title > a').prepend(eventtype_marker);
+                                                           
+                                                                          var content = event.content;
+                                                                          var tooltip = event.tooltip;
+                                                                          if(view.name !== 'month'
+                                                                             && view.name.indexOf('list') < 0
+                                                                             && !event.allDay){
+                                                                             element
+                                                                                .append('<div class="content">'+content+'</div>');
+                                                                          }
+                                                           
+                                                                          // add classes to current event
+                                                                          added_classes = '';
+                                                                          if (typeof event.end !== 'undefined'
+                                                                              && event.end !== null) {
+                                                                             added_classes = event.end.isBefore(moment())      ? ' event_past'   : '';
+                                                                             added_classes+= event.end.isAfter(moment())       ? ' event_future' : '';
+                                                                             added_classes+= event.end.isSame(moment(), 'day') ? ' event_today'  : '';
+                                                                          }
+                                                                          if (event.state != '') {
+                                                                             added_classes+= event.state == 0 ? ' event_info'
+                                                                                           : event.state == 1 ? ' event_todo'
+                                                                                           : event.state == 2 ? ' event_done'
+                                                                                           : '';
+                                                                          }
+                                                                          if (added_classes != '') {
+                                                                             element.addClass(added_classes);
+                                                                          }
+                                                           
+                                                                          // add tooltip to event
+                                                                          if (!disable_qtip) {
+                                                                             var qtip_position = {
+                                                                                viewport: 'auto'
+                                                                             };
+                                                                             if (view.name.indexOf('list') >= 0) {
+                                                                                qtip_position.target= element.find('a');
+                                                                             }
+                                                                             element.qtip({
+                                                                                position: qtip_position,
+                                                                                content: tooltip,
+                                                                                style: {
+                                                                                   classes: 'qtip-shadow qtip-bootstrap'
+                                                                                },
+                                                                                show: {
+                                                                                   solo: true,
+                                                                                   delay: 400
+                                                                                },
+                                                                                hide: {
+                                                                                   fixed: true,
+                                                                                   delay: 100
+                                                                                },
+                                                                                events: {
+                                                                                   show: function(event, api) {
+                                                                                      if(!window_focused) {
+                                                                                         event.preventDefault();
+                                                                                      }
+                                                                                   }
+                                                                                }
+                                                                             });
+                                                                          }
+                                                                       },
+                                                                       viewRender: function(view, element) {
+                                                                          // force refetch events from ajax on view change (don't refetch on firt load)
+                                                                          if (loaded) {
+                                                                             $('#planning675465625').fullCalendar('refetchEvents')
+                                                                          }
+                                                           
+                                                                          // specific process for full list
+                                                                          if (view.name == 'listFull') {
+                                                                             // hide datepick on full list (which have virtually no limit)
+                                                                             $('#planning_datepicker').datepicker('destroy')
+                                                                                                      .hide();
+                                                           
+                                                                             // hide control buttons
+                                                                             $('#planning .fc-left .fc-button-group').hide();
+                                                           
+                                                                             // set date to today - 5 years
+                                                                             if (!lastDateDirty) {
+                                                                                lastDate = $('#planning').fullCalendar('getDate');
+                                                                                // tag lastDate to dirty as viewRender will be called again with gotoDate
+                                                                                lastDateDirty = true
+                                                           
+                                                                                $('#planning').fullCalendar('gotoDate',
+                                                                                                            moment().subtract(5, 'years'));
+                                                                             }
+                                                                          } else {
+                                                                             // reinit datepicker
+                                                                             $('#planning_datepicker').show();
+                                                                             initFCDatePicker();
+                                                           
+                                                                             // show controls buttons
+                                                                             $('#planning .fc-left .fc-button-group').show();
+                                                           
+                                                                             // return to previous save date
+                                                                             if (lastView != view.name
+                                                                                 && !lastDateDirty
+                                                                                 && typeof lastDate != 'undefined'
+                                                                                 && lastDate != $('#planning').fullCalendar('getDate')) {
+                                                                                // tag lastDate to dirty as viewRender will be called again with gotoDate
+                                                                                lastDateDirty = true
+                                                           
+                                                                                $('#planning').fullCalendar('gotoDate', lastDate);
+                                                                             }
+                                                                             lastDate = $('#planning').fullCalendar('getDate');
+                                                                             //console.log(lastDate);
+                                                                          }
+                                                           
+                                                                          // remove dirty on lastDate
+                                                                          lastDateDirty = false
+                                                           
+                                                                          // store current view name (to avoid a new call of gotoDate)
+                                                                          lastView = view.name;
+                                                                       },
+                                                                       eventAfterAllRender: function(view) {
+                                                                          // set a var to force refetch events (see viewRender callback)
+                                                                          loaded = true;
+                                                           
+                                                                          // scroll div to first element needed to be viewed
+                                                                          var scrolltoevent = $('#planning675465625 .event_past.event_todo').first();
+                                                                          if (scrolltoevent.length == 0) {
+                                                                             scrolltoevent = $('#planning675465625 .event_today').first();
+                                                                          }
+                                                                          if (scrolltoevent.length == 0) {
+                                                                             scrolltoevent = $('#planning675465625 .event_future').first();
+                                                                          }
+                                                                          if (scrolltoevent.length == 0) {
+                                                                             scrolltoevent = $('#planning675465625 .event_past').last();
+                                                                          }
+                                                                          if (scrolltoevent.length) {
+                                                                             $('#planning675465625 .fc-scroller').scrollTop(scrolltoevent.prop('offsetTop')-25);
+                                                                          }
+                                                                       },
+                                                                       eventSources: [{
+                                                                          url:  '/ajax/planning.php',
+                                                                          type: 'POST',
+                                                                          data: function() {
+                                                                             var view_name = $('#planning675465625').fullCalendar('getView').name;
+                                                                             var display_done_events = 1;
+                                                                             if (view_name.indexOf('list') >= 0) {
+                                                                                display_done_events = 0;
+                                                                             }
+                                                                             return {
+                                                                                'action': 'get_events',
+                                                                                'display_done_events': display_done_events
+                                                                             };
+                                                                          },
+                                                                          success: function(data) {
+                                                                             if (!false && data.length == 0) {
+                                                                                $('#planning675465625').fullCalendar('option', 'height', 0);
+                                                                             }
+                                                                          },
+                                                                          error: function() {
+                                                                             console.log('there was an error while fetching events!');
+                                                                          }
+                                                                       }],
+                                                           
+                                                                       // EDIT EVENTS
+                                                                       editable: true, // we can drag and resize events
+                                                                       eventResize: function(event, delta, revertFunc) {
+                                                                          editEventTimes(event, revertFunc);
+                                                                       },
+                                                                       eventResizeStart: function() {
+                                                                          disable_edit = true;
+                                                                       },
+                                                                       eventResizeStop: function() {
+                                                                          setTimeout(function(){
+                                                                             disable_edit = false;
+                                                                          }, 300);
+                                                                       },
+                                                                       eventDrop: function(event, delta, revertFunc) {
+                                                                          editEventTimes(event, revertFunc);
+                                                                       },
+                                                                       eventClick: function(event) {
+                                                                          if (event.ajaxurl && event.editable && !disable_edit) {
+                                                                             $('<div>')
+                                                                                .dialog({
+                                                                                   modal:  true,
+                                                                                   width:  'auto',
+                                                                                   height: 'auto',
+                                                                                   close: function(event, ui) {
+                                                                                      $('#planning675465625').fullCalendar('refetchEvents');
+                                                                                   }
+                                                                                })
+                                                                                .load(event.ajaxurl, function() {
+                                                                                   $(this).dialog('option', 'position', ['center', 'center'] );
+                                                                                });
+                                                                             return false;
+                                                                          };
+                                                                       },
+                                                           
+                                                           
+                                                                       // ADD EVENTS
+                                                                       selectable: true,
+                                                                       /*selectHelper: function(start, end) {
+                                                                          return $('<div class="planning-select-helper" ></div>').text(start+' '+end);
+                                                                       },*/ // doesn't work anymore: see https://github.com/fullcalendar/fullcalendar/issues/2832
+                                                                       select: function(start, end, jsEvent) {
+                                                                          $('<div>').dialog({
+                                                                             modal:  true,
+                                                                             width:  'auto',
+                                                                             height: 'auto',
+                                                                             open: function () {
+                                                                                 $(this).load(
+                                                                                   '/ajax/planning.php?action=add_event_fromselect',
+                                                                                   {
+                                                                                      begin: start.format(),
+                                                                                      end:   end.format()
+                                                                                   },
+                                                                                   function() {
+                                                                                      $(this).dialog('option', 'position', ['center', 'center'] );
+                                                                                   }
+                                                                                 );
+                                                                             },
+                                                                             position: {
+                                                                                my: 'center',
+                                                                                at: 'center',
+                                                                                viewport: $(window)
+                                                                             }
+                                                                          });
+                                                           
+                                                                          $('#planning675465625').fullCalendar('unselect');
+                                                                       }
+                                                                    });
+                                                           
+                                                           
+                                                                    // send ajax for event storage (on event drag/resize)
+                                                                    var editEventTimes = function(event, revertFunc) {
+                                                                       if (event._allDay) {
+                                                                          var start = event.start.format()+'T00:00:00';
+                                                                          var end = start;
+                                                                          if (typeof event.end != 'undefined') {
+                                                                             if (event.end == null) {
+                                                                                end = $.fullCalendar.moment(event.start)
+                                                                                         .add(1, 'days')
+                                                                                         .format()+'T00:00:00';
+                                                                             } else {
+                                                                                end = event.end.format()+'T00:00:00';
+                                                                             }
+                                                                          }
+                                                           
+                                                                       } else {
+                                                                          var start = event.start.format();
+                                                                          if (event.end == null) {
+                                                                             var end = $.fullCalendar.moment(event.start)
+                                                                                         .add(2, 'hours')
+                                                                                         .format();
+                                                                          } else {
+                                                                             var end = event.end.format();
+                                                                          }
+                                                                       }
+                                                           
+                                                                       $.ajax({
+                                                                          url:  '/ajax/planning.php',
+                                                                          type: 'POST',
+                                                                          data: {
+                                                                             action:   'update_event_times',
+                                                                             start:    start,
+                                                                             end:      end,
+                                                                             itemtype: event.itemtype,
+                                                                             items_id: event.items_id
+                                                                          },
+                                                                          success: function(html) {
+                                                                             if (!html) {
+                                                                                revertFunc();
+                                                                             }
+                                                                             $('#planning675465625').fullCalendar('updateEvent', event);
+                                                                             displayAjaxMessageAfterRedirect();
+                                                                          },
+                                                                          error: function() {
+                                                                             revertFunc();
+                                                                          }
+                                                                       });
+                                                                    };
+                                                           
+                                                                    // attach button (planning and refresh) in planning header
+                                                                    $('#planning675465625 .fc-toolbar .fc-center h2')
+                                                                       .after(
+                                                                          $('<i id="refresh_planning" class="fa fa-refresh pointer"></i>')
+                                                                       ).after(
+                                                                          $('<input type="hidden" id="planning_datepicker">')
+                                                                       );
+                                                           
+                                                                    $('#refresh_planning').click(function() {
+                                                                       $('#planning675465625').fullCalendar('refetchEvents')
+                                                                    })
+                                                           
+                                                                    // attach the date picker to planning
+                                                                    initFCDatePicker()
+                                                                 });
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                               </tbody>
+                                            </table>
+                                            <br>
+                                            <table class="tab_cadrehov">
+                                               <tbody>
+                                                  <tr class="noHover">
+                                                     <th>
+                                                        <div class="relative"><span><a href="/front/reminder.php">Personal reminders</a></span><span class="floatright"><a href="/front/reminder.form.php"><img src="/pics/plus.png" alt="Add" title="Add"></a></span></div>
+                                                     </th>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td>
+                                                        <a id="content_reminder_27831677144986" href="/front/reminder.form.php?id=2783" data-hasqtip="8">CHACHO</a> 
+                                                        <div id="contentcontent_reminder_27831677144986" class="invisible">
+                                                           <p>CHIAAAAAACHIO, CHIESCA LA HUESCA, HUESCA LA CHIESCA, CHIESCA LA HUESCA, HUESCA LA CHIE.</p>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#content_reminder_27831677144986').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentcontent_reminder_27831677144986')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td>
+                                                        <a id="content_reminder_27301677144986" href="/front/reminder.form.php?id=2730" data-hasqtip="9">Gaviota de chocolate</a> 
+                                                        <div id="contentcontent_reminder_27301677144986" class="invisible">
+                                                           <p>test done</p>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#content_reminder_27301677144986').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentcontent_reminder_27301677144986')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td>
+                                                        <a id="content_reminder_27931677144986" href="/front/reminder.form.php?id=2793" data-hasqtip="10">New note</a> 
+                                                        <div id="contentcontent_reminder_27931677144986" class="invisible">
+                                                           <p>hallo allemaal, wat fijn dat je er bent</p>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#content_reminder_27931677144986').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentcontent_reminder_27931677144986')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                                  <tr class="tab_bg_2">
+                                                     <td>
+                                                        <a id="content_reminder_27841677144986" href="/front/reminder.form.php?id=2784" data-hasqtip="11">Que es crototolamo?</a> 
+                                                        <div id="contentcontent_reminder_27841677144986" class="invisible">
+                                                           <p>El derecho muagmuasel</p>
+                                                        </div>
+                                                        <script type="text/javascript">
+                                                           //<![CDATA[
+                                                           
+                                                           $('#content_reminder_27841677144986').qtip({
+                                                                    position: { viewport: $(window) },
+                                                                    content: {text: $('#contentcontent_reminder_27841677144986')}, style: { classes: 'qtip-shadow qtip-bootstrap'}});
+                                                           
+                                                           //]]>
+                                                        </script>
+                                                     </td>
+                                                  </tr>
+                                               </tbody>
+                                            </table>
+                                            <br>
+                                            <table class="tab_cadrehov">
+                                               <tbody>
+                                                  <tr class="noHover">
+                                                     <th>
+                                                        <div class="relative"><span><a href="/front/reminder.php">Public reminders</a></span><span class="floatright"><a href="/front/reminder.form.php"><img src="/pics/plus.png" alt="Add" title="Add"></a></span></div>
+                                                     </th>
+                                                  </tr>
+                                               </tbody>
+                                            </table>
+                                         </td>
+                                      </tr>
+                                   </tbody>
+                                </table>
+                             </td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
+                 <div id="ui-tabs-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-4" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+                 <div id="ui-tabs-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-5" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+                 <div id="ui-tabs-4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-6" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+                 <div id="ui-tabs-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-7" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+              </div>
+              <script type="text/javascript">
+                 //<![CDATA[
+                 
+                 
+                          forceReload328165352 = false;
+                          $('#tabs328165352').tabs({
+                             active: 0,
+                             // Loading indicator
+                             beforeLoad: function (event, ui) {
+                                if ($(ui.panel).html()
+                                    && !forceReload328165352) {
+                                   event.preventDefault();
+                                } else {
+                                   forceReload328165352 = false;
+                                   var _loader = $('<div id=\'loadingtabs\'><div class=\'loadingindicator\'>Loading...</div></div>');
+                                   ui.panel.html(_loader);
+                 
+                                   ui.jqXHR.complete(function() {
+                                      $('#loadingtabs').remove();
+                                   });
+                 
+                                   ui.jqXHR.error(function(e) {
+                                      console.log(e);
+                                      ui.panel.html(
+                                         '<div class=\'error\'><h3>An error occured loading contents!</h3><p>Please check GLPI logs or contact your administrator.<br/>or <a href=\'#\' onclick=\'return reloadTab()\'>try to reload</a></p></div>'
+                                      );
+                                   });
+                                }
+                 
+                                var newIndex = ui.tab.parent().children().index(ui.tab);
+                                $.get('/ajax/updatecurrenttab.php',
+                                   { itemtype: 'Central', id: '0', tab: newIndex });
+                             },
+                             ajaxOptions: {type: 'POST'}
+                          });$('#tabs328165352').removeClass( 'ui-corner-top' ).addClass( 'ui-corner-left' );// force reload
+                             function reloadTab(add) {
+                                forceReload328165352 = true;
+                                var current_index = $('#tabs328165352').tabs('option','active');
+                                // Save tab
+                                currenthref = $('#tabs328165352 ul>li a').eq(current_index).attr('href');
+                                $('#tabs328165352 ul>li a').eq(current_index).attr('href',currenthref+'&'+add);
+                                $('#tabs328165352').tabs( 'load' , current_index);
+                                // Restore tab
+                                $('#tabs328165352 ul>li a').eq(current_index).attr('href',currenthref);
+                             };
+                 
+                 //]]>
+              </script>
+           </div>
+        </div>
+        <div id="footer">
+           <table>
+              <tbody>
+                 <tr class="">
+                    <td class="left"><span class="copyright">0.033 seconds - 2.7 Mio</span></td>
+                    <td class="right"><a href="http://glpi-project.org/" title="Powered by Teclib and contributors" class="copyright">GLPI 9.2.2 Copyright (C) 2015-2018 Teclib' and contributors - Copyright (C) 2003-2015 INDEPNET Development Team</a></td>
+                 </tr>
+              </tbody>
+           </table>
+        </div>
+        <script type="text/javascript" src="/lib/tiny_mce/tinymce.min.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/fullcalendar/lib/moment.min.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/fullcalendar/fullcalendar.min.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/fullcalendar/locale/en-gb.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/jquery-file-upload/js/jquery.fileupload.min.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/jquery-file-upload/js/jquery.iframe-transport.min.js?v=9.2.2"></script><script type="text/javascript" src="/js/fileupload.js?v=9.2.2"></script><script type="text/javascript" src="/lib/fuzzy/fuzzy-min.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jqueryplugins/jquery.hotkeys.js?v=9.2.2"></script><script type="text/javascript" src="/js/fuzzysearch.js?v=9.2.2"></script><script type="text/javascript" src="/lib/jquery/i18n/jquery.ui.datepicker-en-GB.js?v=9.2.2"></script><script type="text/javascript" src="/js/common.js?v=9.2.2"></script><script type="text/javascript">
+           //<![CDATA[
+           
+           
+                 window.old_alert = window.alert;
+                 window.alert = function(message, caption) {
+                    message = message.replace('\n', '<br>');
+                    caption = caption || 'Information';
+                    $('<div/>').html(message).dialog({
+                       title: caption,
+                       buttons: {
+                          OK: function() {
+                             $(this).dialog('close');
+                          }
+                       },
+                       dialogClass: 'glpi_modal',
+                       open: function(event, ui) {
+                          $(this).parent().prev('.ui-widget-overlay').addClass('glpi_modal');
+                       },
+                       close: function(){
+                          $(this).remove();
+                       },
+                       draggable: true,
+                       modal: true,
+                       resizable: false,
+                       width: 'auto'
+                    });
+                 };
+           
+           //]]>
+        </script><script type="text/javascript">
+           //<![CDATA[
+           
+           
+                 var confirmed = false;
+                 var lastClickedElement;
+           
+                 // store last clicked element on dom
+                 $(document).click(function(event) {
+                     lastClickedElement = $(event.target);
+                 });
+           
+                 // asynchronous confirm dialog with jquery ui
+                 var newConfirm = function(message, caption) {
+                    message = message.replace('\n', '<br>');
+                    caption = caption || '';
+           
+                    $('<div/>').html(message).dialog({
+                       title: caption,
+                       dialogClass: 'fixed glpi_modal',
+                       buttons: {
+                          'Confirm': function () {
+                             $(this).dialog('close');
+                             confirmed = true;
+           
+                             //trigger click on the same element (to return true value)
+                             lastClickedElement.click();
+           
+                             // re-init confirmed (to permit usage of 'confirm' function again in the page)
+                             // maybe timeout is not essential ...
+                             setTimeout(function(){  confirmed = false; }, 100);
+                          },
+                          'Cancel': function () {
+                             $(this).dialog('close');
+                             confirmed = false;
+                          }
+                       },
+                       open: function(event, ui) {
+                          $(this).parent().prev('.ui-widget-overlay').addClass('glpi_modal');
+                       },
+                       close: function () {
+                           $(this).remove();
+                       },
+                       draggable: true,
+                       modal: true,
+                       resizable: false,
+                       width: 'auto'
+                    });
+                 };
+           
+                 window.nativeConfirm = window.confirm;
+           
+                 // redefine native 'confirm' function
+                 window.confirm = function (message, caption) {
+                    // if watched var isn't true, we can display dialog
+                    if(!confirmed) {
+                       // call asynchronous dialog
+                       newConfirm(message, caption);
+                    }
+           
+                    // return early
+                    return confirmed;
+                 };
+           
+           //]]>
+        </script><script type="text/javascript">
+           //<![CDATA[
+           
+           
+                    var CFG_GLPI  = {
+                       'url_base': 'http://demo.glpi-project.org',
+                       'root_doc': '',
+                    };
+                 
+           
+           //]]>
+        </script><script type="text/javascript">
+           //<![CDATA[
+           
+           
+                 displayAjaxMessageAfterRedirect = function() {
+                    // attach MESSAGE_AFTER_REDIRECT to body
+                    $('.message_after_redirect').remove();
+                    $.ajax({
+                       url:  '/ajax/displayMessageAfterRedirect.php',
+                       success: function(html) {
+                          $('body').append(html);
+                       }
+                    });
+                 }
+           
+           //]]>
+        </script>
+        <div id="showSavedSearches" class="slidepanel onright" style="display: none;">
+           <div class="header">
+              <button type="button" class="close ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" title="Close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">Close</span></button><a href="/front/savedsearch.php"><img class="icon" src="/pics/menu_config.png" alt="Manage saved searches" title="Manage saved searches"></a>
+              <h3>Saved searches</h3>
+           </div>
+           <div class="contents"></div>
+        </div>
+        <div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="show_all_menu" aria-labelledby="ui-id-8" style="display: none; position: absolute;">
+           <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-8" class="ui-dialog-title">&nbsp;</span><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" aria-disabled="false" title="close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span></button></div>
+           <div id="show_all_menu" class="invisible ui-dialog-content ui-widget-content" style="display: block;">
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/computer.php" title="Assets">Assets</a></dt>
+                 <dd><a href="/front/computer.php">Computers</a></dd>
+                 <dd><a href="/front/monitor.php">Monitors</a></dd>
+                 <dd><a href="/front/software.php">Software</a></dd>
+                 <dd><a href="/front/networkequipment.php">Network devices</a></dd>
+                 <dd><a href="/front/peripheral.php">Devices</a></dd>
+                 <dd><a href="/front/printer.php">Printers</a></dd>
+                 <dd><a href="/front/cartridgeitem.php">Cartridges</a></dd>
+                 <dd><a href="/front/consumableitem.php">Consumables</a></dd>
+                 <dd><a href="/front/phone.php">Phones</a></dd>
+                 <dd><a href="/front/allassets.php">Global</a></dd>
+              </dl>
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/ticket.php" title="Assistance">Assistance</a></dt>
+                 <dd><a href="/front/ticket.php">Tickets</a></dd>
+                 <dd><a href="/front/ticket.form.php">Create ticket</a></dd>
+                 <dd><a href="/front/problem.php">Problems</a></dd>
+                 <dd><a href="/front/change.php">Changes</a></dd>
+                 <dd><a href="/front/planning.php">Planning</a></dd>
+                 <dd><a href="/front/stat.php">Statistics</a></dd>
+                 <dd><a href="/front/ticketrecurrent.php">Recurrent tickets</a></dd>
+              </dl>
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/softwarelicense.php" title="Management">Management</a></dt>
+                 <dd><a href="/front/softwarelicense.php">Licenses</a></dd>
+                 <dd><a href="/front/budget.php">Budgets</a></dd>
+                 <dd><a href="/front/supplier.php">Suppliers</a></dd>
+                 <dd><a href="/front/contact.php">Contacts</a></dd>
+                 <dd><a href="/front/contract.php">Contracts</a></dd>
+                 <dd><a href="/front/document.php">Documents</a></dd>
+                 <dd><a href="/front/line.php">Lines</a></dd>
+                 <dd><a href="/front/certificate.php">Certificates</a></dd>
+              </dl>
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/project.php" title="Tools">Tools</a></dt>
+                 <dd><a href="/front/project.php">Projects</a></dd>
+                 <dd><a href="/front/reminder.php">Reminders</a></dd>
+                 <dd><a href="/front/rssfeed.php">RSS feeds</a></dd>
+                 <dd><a href="/front/knowbaseitem.php">Knowledge base</a></dd>
+                 <dd><a href="/front/reservationitem.php">Reservations</a></dd>
+                 <dd><a href="/front/report.php">Reports</a></dd>
+                 <dd><a href="/front/savedsearch.php">Saved searches</a></dd>
+              </dl>
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/user.php" title="Administration">Administration</a></dt>
+                 <dd><a href="/front/user.php">Users</a></dd>
+                 <dd><a href="/front/group.php">Groups</a></dd>
+                 <dd><a href="/front/profile.php">Profiles</a></dd>
+              </dl>
+              <dl>
+                 <dt class="primary-bg primary-fg"><a class="primary-fg" href="/front/dropdown.php" title="Setup">Setup</a></dt>
+                 <dd><a href="/front/dropdown.php">Dropdowns</a></dd>
+                 <dd><a href="/front/devices.php">Components</a></dd>
+                 <dd><a href="/front/slm.php">Service levels</a></dd>
+                 <dd><a href="/front/link.php">External links</a></dd>
+              </dl>
+           </div>
+           <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+           <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+        </div>
+        <div id="qtip-12" class="qtip qtip-default qtip-shadow qtip-bootstrap qtip-pos-tl qtip-fixed" tracking="false" role="alert" aria-live="polite" aria-atomic="false" aria-describedby="qtip-12-content" aria-hidden="true" data-qtip-id="12" style="z-index: 15001;">
+           <div class="qtip-tip" style="background-color: transparent !important; border: 0px !important; width: 8px; height: 8px; line-height: 8px; left: 6px; top: -8px;">
+              <canvas width="8" height="8" style="background-color: transparent !important; border: 0px !important;"></canvas>
+           </div>
+           <div class="qtip-content" id="qtip-12-content" aria-atomic="true">
+              <img src="/pics/rdv_public.png" alt="" title="Project task">&nbsp;<a id="project_task_11471672131796" href="/front/projecttask.form.php?id=1147">From 00:00 to 02:00: Durchführung Kick-Off<br>By: Admin DE (13)</a>
+              <div class="b">Percent done: 0%</div>
+              <div class="event-description"></div>
+           </div>
+        </div>
+     </body>
+     </html>
