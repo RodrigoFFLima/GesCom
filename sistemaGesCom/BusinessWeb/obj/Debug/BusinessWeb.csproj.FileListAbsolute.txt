@@ -1,0 +1,9 @@
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\bin\Debug\BusinessWeb.dll.config
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\bin\Debug\BusinessWeb.dll
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\bin\Debug\BusinessWeb.pdb
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\bin\Debug\EntityFramework.dll
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\bin\Debug\EntityFramework.xml
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\obj\Debug\BusinessWeb.csprojResolveAssemblyReference.cache
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\obj\Debug\BusinessWeb.csproj.CoreCompileInputs.cache
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\obj\Debug\BusinessWeb.dll
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\BusinessWeb\obj\Debug\BusinessWeb.pdb

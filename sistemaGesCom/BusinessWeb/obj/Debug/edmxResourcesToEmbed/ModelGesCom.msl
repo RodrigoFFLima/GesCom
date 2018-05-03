@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GesComModelStoreContainer" CdmEntityContainer="GesComEntities">
+    <EntitySetMapping Name="tb_chamados">
+      <EntityTypeMapping TypeName="GesComModel.tb_chamados">
+        <MappingFragment StoreEntitySet="tb_chamados">
+          <ScalarProperty Name="cha_id" ColumnName="cha_id" />
+          <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+          <ScalarProperty Name="cha_descricao" ColumnName="cha_descricao" />
+          <ScalarProperty Name="cha_dataAbertura" ColumnName="cha_dataAbertura" />
+          <ScalarProperty Name="cha_dataFinalizacao" ColumnName="cha_dataFinalizacao" />
+          <ScalarProperty Name="cha_anexo" ColumnName="cha_anexo" />
+          <ScalarProperty Name="cha_titulo" ColumnName="cha_titulo" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_cidades">
+      <EntityTypeMapping TypeName="GesComModel.tb_cidades">
+        <MappingFragment StoreEntitySet="tb_cidades">
+          <ScalarProperty Name="cid_id" ColumnName="cid_id" />
+          <ScalarProperty Name="cid_nome" ColumnName="cid_nome" />
+          <ScalarProperty Name="cid_uf" ColumnName="cid_uf" />
+          <ScalarProperty Name="est_id" ColumnName="est_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_empresasManutencao">
+      <EntityTypeMapping TypeName="GesComModel.tb_empresasManutencao">
+        <MappingFragment StoreEntitySet="tb_empresasManutencao">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_nome" ColumnName="emp_nome" />
+          <ScalarProperty Name="emp_telefone" ColumnName="emp_telefone" />
+          <ScalarProperty Name="emp_endereco" ColumnName="emp_endereco" />
+          <ScalarProperty Name="emp_CEP" ColumnName="emp_CEP" />
+          <ScalarProperty Name="emp_CNPJ" ColumnName="emp_CNPJ" />
+          <ScalarProperty Name="emp_rua" ColumnName="emp_rua" />
+          <ScalarProperty Name="emp_bairro" ColumnName="emp_bairro" />
+          <ScalarProperty Name="cid_id" ColumnName="cid_id" />
+          <ScalarProperty Name="est_id" ColumnName="est_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_estado">
+      <EntityTypeMapping TypeName="GesComModel.tb_estado">
+        <MappingFragment StoreEntitySet="tb_estado">
+          <ScalarProperty Name="est_id" ColumnName="est_id" />
+          <ScalarProperty Name="est_nome" ColumnName="est_nome" />
+          <ScalarProperty Name="est_uf" ColumnName="est_uf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_licencas">
+      <EntityTypeMapping TypeName="GesComModel.tb_licencas">
+        <MappingFragment StoreEntitySet="tb_licencas">
+          <ScalarProperty Name="lic_id" ColumnName="lic_id" />
+          <ScalarProperty Name="lic_nomeFabricante" ColumnName="lic_nomeFabricante" />
+          <ScalarProperty Name="lic_nomeProduto" ColumnName="lic_nomeProduto" />
+          <ScalarProperty Name="lic_valor" ColumnName="lic_valor" />
+          <ScalarProperty Name="lic_serial" ColumnName="lic_serial" />
+          <ScalarProperty Name="lic_dataCompra" ColumnName="lic_dataCompra" />
+          <ScalarProperty Name="lic_dataExpiracao" ColumnName="lic_dataExpiracao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_localizacao">
+      <EntityTypeMapping TypeName="GesComModel.tb_localizacao">
+        <MappingFragment StoreEntitySet="tb_localizacao">
+          <ScalarProperty Name="loc_id" ColumnName="loc_id" />
+          <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+          <ScalarProperty Name="cid_id" ColumnName="cid_id" />
+          <ScalarProperty Name="loc_dataInclusao" ColumnName="loc_dataInclusao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_maquinario">
+      <EntityTypeMapping TypeName="GesComModel.tb_maquinario">
+        <MappingFragment StoreEntitySet="tb_maquinario">
+          <ScalarProperty Name="maq_nome" ColumnName="maq_nome" />
+          <ScalarProperty Name="maq_procNome" ColumnName="maq_procNome" />
+          <ScalarProperty Name="maq_memoriaRam" ColumnName="maq_memoriaRam" />
+          <ScalarProperty Name="maq_memoriaHD" ColumnName="maq_memoriaHD" />
+          <ScalarProperty Name="maq_sisOperacional" ColumnName="maq_sisOperacional" />
+          <ScalarProperty Name="maq_placaVideo" ColumnName="maq_placaVideo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_mobilias">
+      <EntityTypeMapping TypeName="GesComModel.tb_mobilias">
+        <MappingFragment StoreEntitySet="tb_mobilias">
+          <ScalarProperty Name="mob_qtde" ColumnName="mob_qtde" />
+          <ScalarProperty Name="mob_id" ColumnName="mob_id" />
+          <ScalarProperty Name="mob_descricao" ColumnName="mob_descricao" />
+          <ScalarProperty Name="mob_valor" ColumnName="mob_valor" />
+          <ScalarProperty Name="mob_dataCompra" ColumnName="mob_dataCompra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_perifericos">
+      <EntityTypeMapping TypeName="GesComModel.tb_perifericos">
+        <MappingFragment StoreEntitySet="tb_perifericos">
+          <ScalarProperty Name="per_id" ColumnName="per_id" />
+          <ScalarProperty Name="per_descricao" ColumnName="per_descricao" />
+          <ScalarProperty Name="per_dataAquisicao" ColumnName="per_dataAquisicao" />
+          <ScalarProperty Name="per_valor" ColumnName="per_valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_relacionamentos">
+      <EntityTypeMapping TypeName="GesComModel.tb_relacionamentos">
+        <MappingFragment StoreEntitySet="tb_relacionamentos">
+          <ScalarProperty Name="rel_id" ColumnName="rel_id" />
+          <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+          <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+          <ScalarProperty Name="per_id" ColumnName="per_id" />
+          <ScalarProperty Name="lic_id" ColumnName="lic_id" />
+          <ScalarProperty Name="loc_id" ColumnName="loc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_usuario">
+      <EntityTypeMapping TypeName="GesComModel.tb_usuario">
+        <MappingFragment StoreEntitySet="tb_usuario">
+          <ScalarProperty Name="usu_id" ColumnName="usu_id" />
+          <ScalarProperty Name="usu_login" ColumnName="usu_login" />
+          <ScalarProperty Name="usu_senha" ColumnName="usu_senha" />
+          <ScalarProperty Name="oracle_usu_id" ColumnName="oracle_usu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

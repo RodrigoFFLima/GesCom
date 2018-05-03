@@ -1,0 +1,6 @@
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\bin\Debug\leitorHardware.exe.config
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\bin\Debug\leitorHardware.exe
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\bin\Debug\leitorHardware.pdb
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\obj\Debug\leitorHardware.csproj.CoreCompileInputs.cache
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\obj\Debug\leitorHardware.exe
+C:\Users\rodri\GitHub\GesCom\sistemaGesCom\leitorHardware\obj\Debug\leitorHardware.pdb

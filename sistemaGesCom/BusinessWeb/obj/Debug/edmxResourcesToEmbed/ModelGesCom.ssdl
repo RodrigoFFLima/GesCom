@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GesComModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_chamados">
+    <Key>
+      <PropertyRef Name="cha_id" />
+    </Key>
+    <Property Name="cha_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usu_id" Type="int" Nullable="false" />
+    <Property Name="cha_descricao" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="cha_dataAbertura" Type="datetime" Nullable="false" />
+    <Property Name="cha_dataFinalizacao" Type="datetime" Nullable="false" />
+    <Property Name="cha_anexo" Type="varchar" MaxLength="100" />
+    <Property Name="cha_titulo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="emp_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_cidades">
+    <Key>
+      <PropertyRef Name="cid_id" />
+    </Key>
+    <Property Name="cid_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cid_nome" Type="varchar" MaxLength="255" />
+    <Property Name="cid_uf" Type="char" MaxLength="2" />
+    <Property Name="est_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_empresasManutencao">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emp_nome" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="emp_telefone" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="emp_endereco" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="emp_CEP" Type="varchar" MaxLength="14" />
+    <Property Name="emp_CNPJ" Type="varchar" MaxLength="18" />
+    <Property Name="emp_rua" Type="varchar" MaxLength="50" />
+    <Property Name="emp_bairro" Type="varchar" MaxLength="50" />
+    <Property Name="cid_id" Type="int" />
+    <Property Name="est_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_estado">
+    <Key>
+      <PropertyRef Name="est_id" />
+    </Key>
+    <Property Name="est_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="est_nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="est_uf" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_licencas">
+    <Key>
+      <PropertyRef Name="lic_id" />
+    </Key>
+    <Property Name="lic_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lic_nomeFabricante" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lic_nomeProduto" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lic_valor" Type="float" />
+    <Property Name="lic_serial" Type="varchar" MaxLength="100" />
+    <Property Name="lic_dataCompra" Type="datetime" />
+    <Property Name="lic_dataExpiracao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tb_localizacao">
+    <Key>
+      <PropertyRef Name="loc_id" />
+    </Key>
+    <Property Name="loc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maq_id" Type="int" />
+    <Property Name="cid_id" Type="int" />
+    <Property Name="loc_dataInclusao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tb_maquinario">
+    <Key>
+      <PropertyRef Name="maq_nome" />
+    </Key>
+    <Property Name="maq_nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="maq_procNome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="maq_memoriaRam" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="maq_memoriaHD" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="maq_sisOperacional" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="maq_placaVideo" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_mobilias">
+    <Key>
+      <PropertyRef Name="mob_id" />
+    </Key>
+    <Property Name="mob_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mob_descricao" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="mob_valor" Type="float" Nullable="false" />
+    <Property Name="mob_dataCompra" Type="datetime" Nullable="false" />
+    <Property Name="mob_qtde" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_perifericos">
+    <Key>
+      <PropertyRef Name="per_id" />
+    </Key>
+    <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="per_descricao" Type="varchar" MaxLength="200" />
+    <Property Name="per_dataAquisicao" Type="datetime" />
+    <Property Name="per_valor" Type="float" />
+  </EntityType>
+  <EntityType Name="tb_relacionamentos">
+    <Key>
+      <PropertyRef Name="rel_id" />
+    </Key>
+    <Property Name="rel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maq_id" Type="varchar" MaxLength="50" />
+    <Property Name="usu_id" Type="int" />
+    <Property Name="per_id" Type="int" />
+    <Property Name="lic_id" Type="int" />
+    <Property Name="loc_id" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_usuario">
+    <Key>
+      <PropertyRef Name="usu_id" />
+    </Key>
+    <Property Name="usu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usu_login" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="usu_senha" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="oracle_usu_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tb_chamados_tb_empresasManutencao">
+    <End Role="tb_empresasManutencao" Type="Self.tb_empresasManutencao" Multiplicity="0..1" />
+    <End Role="tb_chamados" Type="Self.tb_chamados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_empresasManutencao">
+        <PropertyRef Name="emp_id" />
+      </Principal>
+      <Dependent Role="tb_chamados">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_chamados_tb_usuario">
+    <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="1" />
+    <End Role="tb_chamados" Type="Self.tb_chamados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usuario">
+        <PropertyRef Name="usu_id" />
+      </Principal>
+      <Dependent Role="tb_chamados">
+        <PropertyRef Name="usu_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_cidades_tb_estado">
+    <End Role="tb_estado" Type="Self.tb_estado" Multiplicity="0..1" />
+    <End Role="tb_cidades" Type="Self.tb_cidades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_estado">
+        <PropertyRef Name="est_id" />
+      </Principal>
+      <Dependent Role="tb_cidades">
+        <PropertyRef Name="est_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_localizacao_tb_cidades">
+    <End Role="tb_cidades" Type="Self.tb_cidades" Multiplicity="0..1" />
+    <End Role="tb_localizacao" Type="Self.tb_localizacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_cidades">
+        <PropertyRef Name="cid_id" />
+      </Principal>
+      <Dependent Role="tb_localizacao">
+        <PropertyRef Name="cid_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_relacionamentos_tb_licencas">
+    <End Role="tb_licencas" Type="Self.tb_licencas" Multiplicity="0..1" />
+    <End Role="tb_relacionamentos" Type="Self.tb_relacionamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_licencas">
+        <PropertyRef Name="lic_id" />
+      </Principal>
+      <Dependent Role="tb_relacionamentos">
+        <PropertyRef Name="lic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_relacionamentos_tb_localizacao">
+    <End Role="tb_localizacao" Type="Self.tb_localizacao" Multiplicity="0..1" />
+    <End Role="tb_relacionamentos" Type="Self.tb_relacionamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_localizacao">
+        <PropertyRef Name="loc_id" />
+      </Principal>
+      <Dependent Role="tb_relacionamentos">
+        <PropertyRef Name="loc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_relacionamentos_tb_maquina">
+    <End Role="tb_maquinario" Type="Self.tb_maquinario" Multiplicity="0..1" />
+    <End Role="tb_relacionamentos" Type="Self.tb_relacionamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_maquinario">
+        <PropertyRef Name="maq_nome" />
+      </Principal>
+      <Dependent Role="tb_relacionamentos">
+        <PropertyRef Name="maq_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_relacionamentos_tb_perifericos">
+    <End Role="tb_perifericos" Type="Self.tb_perifericos" Multiplicity="0..1" />
+    <End Role="tb_relacionamentos" Type="Self.tb_relacionamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_perifericos">
+        <PropertyRef Name="per_id" />
+      </Principal>
+      <Dependent Role="tb_relacionamentos">
+        <PropertyRef Name="per_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_relacionamentos_tb_usuario">
+    <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="0..1" />
+    <End Role="tb_relacionamentos" Type="Self.tb_relacionamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usuario">
+        <PropertyRef Name="usu_id" />
+      </Principal>
+      <Dependent Role="tb_relacionamentos">
+        <PropertyRef Name="usu_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GesComModelStoreContainer">
+    <EntitySet Name="tb_chamados" EntityType="Self.tb_chamados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_cidades" EntityType="Self.tb_cidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_empresasManutencao" EntityType="Self.tb_empresasManutencao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_estado" EntityType="Self.tb_estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_licencas" EntityType="Self.tb_licencas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_localizacao" EntityType="Self.tb_localizacao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_maquinario" EntityType="Self.tb_maquinario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_mobilias" EntityType="Self.tb_mobilias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_perifericos" EntityType="Self.tb_perifericos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_relacionamentos" EntityType="Self.tb_relacionamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_chamados_tb_empresasManutencao" Association="Self.FK_tb_chamados_tb_empresasManutencao">
+      <End Role="tb_empresasManutencao" EntitySet="tb_empresasManutencao" />
+      <End Role="tb_chamados" EntitySet="tb_chamados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_chamados_tb_usuario" Association="Self.FK_tb_chamados_tb_usuario">
+      <End Role="tb_usuario" EntitySet="tb_usuario" />
+      <End Role="tb_chamados" EntitySet="tb_chamados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_cidades_tb_estado" Association="Self.FK_tb_cidades_tb_estado">
+      <End Role="tb_estado" EntitySet="tb_estado" />
+      <End Role="tb_cidades" EntitySet="tb_cidades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_localizacao_tb_cidades" Association="Self.FK_tb_localizacao_tb_cidades">
+      <End Role="tb_cidades" EntitySet="tb_cidades" />
+      <End Role="tb_localizacao" EntitySet="tb_localizacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_relacionamentos_tb_licencas" Association="Self.FK_tb_relacionamentos_tb_licencas">
+      <End Role="tb_licencas" EntitySet="tb_licencas" />
+      <End Role="tb_relacionamentos" EntitySet="tb_relacionamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_relacionamentos_tb_localizacao" Association="Self.FK_tb_relacionamentos_tb_localizacao">
+      <End Role="tb_localizacao" EntitySet="tb_localizacao" />
+      <End Role="tb_relacionamentos" EntitySet="tb_relacionamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_relacionamentos_tb_maquina" Association="Self.FK_tb_relacionamentos_tb_maquina">
+      <End Role="tb_maquinario" EntitySet="tb_maquinario" />
+      <End Role="tb_relacionamentos" EntitySet="tb_relacionamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_relacionamentos_tb_perifericos" Association="Self.FK_tb_relacionamentos_tb_perifericos">
+      <End Role="tb_perifericos" EntitySet="tb_perifericos" />
+      <End Role="tb_relacionamentos" EntitySet="tb_relacionamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_relacionamentos_tb_usuario" Association="Self.FK_tb_relacionamentos_tb_usuario">
+      <End Role="tb_usuario" EntitySet="tb_usuario" />
+      <End Role="tb_relacionamentos" EntitySet="tb_relacionamentos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
