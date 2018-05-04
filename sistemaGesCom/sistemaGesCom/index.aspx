@@ -1,16 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="sistemaGesCom.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-        function mascara(t, mask) {
-            var i = t.value.length;
-            var saida = mask.substring(1, 0);
-            var texto = mask.substring(i)
-            if (texto.substring(0, 1) != saida) {
-                t.value += texto.substring(0, 1);
-            }
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       <!-- **********************************************************************************************************************************************************

@@ -1,16 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="registroMobiliario.aspx.cs" Inherits="sistemaGesCom.registroMobiliario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-        function mascara(t, mask) {
-            var i = t.value.length;
-            var saida = mask.substring(1, 0);
-            var texto = mask.substring(i)
-            if (texto.substring(0, 1) != saida) {
-                t.value += texto.substring(0, 1);
-            }
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- **********************************************************************************************************************************************************
@@ -41,12 +31,12 @@
                                 </div>
                                 <label class="col-sm-2 col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-10">
-                                    <asp:TextBox ID="txtValorCompra" class="form-control" placeholder="Valor da Compra" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtValorCompra" class="money form-control" placeholder="Valor da Compra" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Campo obrigatório" ControlToValidate="txtValorCompra" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                                 <label class="col-sm-2 col-sm-2 control-label">Quantidade</label>
                                 <div class="col-sm-10">
-                                    <asp:TextBox ID="txtQuantidade" type="text" class="form-control bfh-number" placeholder="Quantidade de Itens" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtQuantidade" type="number" class="form-control bfh-number" placeholder="Quantidade de Itens" runat="server"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Campo obrigatório" ControlToValidate="txtQuantidade" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-sm-10">
